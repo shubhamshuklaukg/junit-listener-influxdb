@@ -23,18 +23,16 @@ Listener will run automatically due to a Service Loader.
 ### Usage local
 
 If you want to run the tests with this listener locally, make sure to set the environment
-variable `TEST_LISTENER_ENABLED` to true. Default influx properties point to the instance `localhost:8086` with
+variable `TEST_RESULTS_ENABLED` to true. Default influx properties point to the instance `localhost:8086` with
 credentials `root/root`. So, if no other environment variables are set for the influx
-properties (`TEST_LISTENER_INFLUX_HOST`, `TEST_LISTENER_INFLUX_PORT`, `TEST_LISTENER_INFLUX_USER`
-, `TEST_LISTENER_INFLUX_PASSWORD`, `TEST_LISTENER_INFLUX_DB`), make sure to install and run a local influx db instance
+properties (`TEST_RESULTS_INFLUX_HOST`, `TEST_RESULTS_INFLUX_PORT`, `TEST_RESULTS_INFLUX_DB`), make sure to install and run a local influx db instance
 with a database `testresults` created.
 
 ### Usage CI/CD
 
-Set the environment variables `TEST_LISTENER_ENABLED` default to true. Set this environment variable to false in the
+Set the environment variables `TEST_RESULTS_ENABLED` default to true. Set this environment variable to false in the
 jobs where you don't need the test results (branch/merge jobs for example). Set the right influx properties globally for
-the instance in your landscape (`TEST_LISTENER_INFLUX_HOST`, `TEST_LISTENER_INFLUX_PORT`, `TEST_LISTENER_INFLUX_USER`
-, `TEST_LISTENER_INFLUX_PASSWORD`, `TEST_LISTENER_INFLUX_DB`). In Gitlab this is possible via the global CI/CD settings.
+the instance in your landscape (`TEST_RESULTS_INFLUX_HOST`, `TEST_RESULTS_INFLUX_PORT`, `TEST_RESULTS_INFLUX_DB`). In Gitlab this is possible via the global CI/CD settings.
 
 ## Extracted data
 

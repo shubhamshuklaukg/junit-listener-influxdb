@@ -26,16 +26,6 @@ public final class InfluxDb {
     private static final String ENV_INFLUX_PORT = "TEST_RESULTS_INFLUX_PORT";
 
     /**
-     * Sets the right InfluxDB user via the environment variable 'TEST_RESULTS_INFLUX_USER'.
-     */
-    private static final String ENV_INFLUX_USER = "TEST_RESULTS_INFLUX_USER";
-
-    /**
-     * Sets the right InfluxDB password via the environment variable 'TEST_RESULTS_INFLUX_PASSWORD'.
-     */
-    private static final String ENV_INFLUX_PASSWORD = "TEST_RESULTS_INFLUX_PASSWORD";
-
-    /**
      * Sets the right InfluxDB database name via the environment variable 'TEST_RESULTS_INFLUX_DB'.
      */
     private static final String ENV_INFLUX_DB_NAME = "TEST_RESULTS_INFLUX_DB";
@@ -56,16 +46,6 @@ public final class InfluxDb {
     private final String influxUrl;
 
     /**
-     * Represents the Influx user.
-     */
-    private final String influxUser;
-
-    /**
-     * Represents the Influx password.
-     */
-    private final String influxPassword;
-
-    /**
      * Represents the Influx database name.
      */
     private final String influxDatabaseName;
@@ -78,8 +58,6 @@ public final class InfluxDb {
         final String influxHost = getEnvironmentVariable(ENV_INFLUX_HOST, "localhost");
         final String influxPort = getEnvironmentVariable(ENV_INFLUX_PORT, "8086");
         influxUrl = "http://" + influxHost + ":" + influxPort;
-        influxUser = getEnvironmentVariable(ENV_INFLUX_USER, "root");
-        influxPassword = getEnvironmentVariable(ENV_INFLUX_PASSWORD, "root");
         influxDatabaseName = getEnvironmentVariable(ENV_INFLUX_DB_NAME, "testresults");
     }
 
@@ -87,7 +65,7 @@ public final class InfluxDb {
      * Connects with the configured influx database.
      */
     public void connect() {
-        influxDBConnection = InfluxDBFactory.connect(influxUrl, influxUser, influxPassword);
+        influxDBConnection = InfluxDBFactory.connect(influxUrl);
         final Pong response = this.influxDBConnection.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
             log.warning("Error pinging server.");
@@ -95,8 +73,6 @@ public final class InfluxDb {
         }
         influxDBConnection.setLogLevel(InfluxDB.LogLevel.BASIC);
         influxDBConnection.setDatabase(influxDatabaseName);
-        influxDBConnection.createRetentionPolicy(
-                "defaultPolicy", influxDatabaseName, "30d", 1, true);
         influxDBConnection.enableBatch(BatchOptions.DEFAULTS);
     }
 
@@ -126,7 +102,6 @@ public final class InfluxDb {
     public BatchPoints getBatchPoints() {
         return BatchPoints
                 .database(influxDatabaseName)
-                .retentionPolicy("defaultPolicy")
                 .build();
     }
 

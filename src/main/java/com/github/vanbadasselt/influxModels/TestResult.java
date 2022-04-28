@@ -16,10 +16,10 @@ public class TestResult {
     @Column(name = "time")
     private Instant time;
 
-    @Column(name = "application", tag = true)
+    @Column(name = "application")
     private String application;
 
-    @Column(name = "applicationType", tag = true)
+    @Column(name = "applicationType")
     private String applicationType;
 
     @Column(name = "durationMs")
@@ -34,7 +34,7 @@ public class TestResult {
     @Column(name = "featureName")
     private String featureName;
 
-    @Column(name = "releaseVersion", tag = true)
+    @Column(name = "releaseVersion")
     private String releaseVersion;
 
     @Column(name = "result", tag = true)
@@ -62,7 +62,7 @@ public class TestResult {
     private static final String APPLICATION_TYPE_BACKEND = "BE";
 
     public TestResult() {
-        this.application = UNKNOWN;
+        this.application = "ds-tests";
         this.applicationType = APPLICATION_TYPE_BACKEND;
         this.durationMs = 0;
         this.errorMessage = UNKNOWN;
@@ -74,7 +74,7 @@ public class TestResult {
         this.run = UNKNOWN;
         this.skippedMessage = UNKNOWN;
         this.testName = UNKNOWN;
-        this.testType = UNKNOWN;
+        this.testType = "system";
         this.warningMessage = UNKNOWN;
     }
 

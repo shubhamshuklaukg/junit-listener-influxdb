@@ -15,16 +15,16 @@ public class TestRunResult {
     @Column(name = "time")
     private Instant time;
 
-    @Column(name = "application", tag = true)
+    @Column(name = "application")
     private String application;
 
-    @Column(name = "applicationType", tag = true)
+    @Column(name = "applicationType")
     private String applicationType;
 
     @Column(name = "durationMs")
     private long durationMs;
 
-    @Column(name = "releaseVersion", tag = true)
+    @Column(name = "releaseVersion")
     private String releaseVersion;
 
     @Column(name = "result", tag = true)
@@ -49,7 +49,7 @@ public class TestRunResult {
     private static final String APPLICATION_TYPE_BACKEND = "BE";
 
     public TestRunResult(){
-        this.application = UNKNOWN;
+        this.application = "ds-tests";
         this.applicationType = APPLICATION_TYPE_BACKEND;
         this.durationMs = 0;
         this.releaseVersion = UNKNOWN;

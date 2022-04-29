@@ -21,7 +21,7 @@ public class TestRunResult {
     @Column(name = "applicationType")
     private String applicationType;
 
-    @Column(name = "durationMs")
+    @Column(name = "durationMs", tag = true)
     private long durationMs;
 
     @Column(name = "releaseVersion")
@@ -41,6 +41,9 @@ public class TestRunResult {
 
     @Column(name = "testCasesTotal")
     private long testCasesTotal;
+
+    @Column(name = "featureName")
+    private String featureName;
 
     @Column(name = "testType", tag = true)
     private String testType;
@@ -90,6 +93,10 @@ public class TestRunResult {
 
     public void setTestCasesSkipped(long testCasesSkipped) {
         this.testCasesSkipped = testCasesSkipped;
+    }
+
+    public void setFeatureName(String featureName) {
+        this.featureName = featureName;
     }
 
     public void setTestType(String testType) {

@@ -31,7 +31,7 @@ public class TestResult {
     @Column(name = "feature", tag = true)
     private String feature;
 
-    @Column(name = "featureName")
+    @Column(name = "featureName", tag = true)
     private String featureName;
 
     @Column(name = "releaseVersion")
@@ -49,7 +49,7 @@ public class TestResult {
     @Column(name = "skippedMessage")
     private String skippedMessage;
 
-    @Column(name = "testName")
+    @Column(name = "testName", tag = true)
     private String testName;
 
     @Column(name = "testType", tag = true)

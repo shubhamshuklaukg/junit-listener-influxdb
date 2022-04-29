@@ -21,7 +21,7 @@ public class TestRunResult {
     @Column(name = "applicationType")
     private String applicationType;
 
-    @Column(name = "durationMs", tag = true)
+    @Column(name = "durationMs")
     private long durationMs;
 
     @Column(name = "releaseVersion")
@@ -42,7 +42,7 @@ public class TestRunResult {
     @Column(name = "testCasesTotal")
     private long testCasesTotal;
 
-    @Column(name = "featureName")
+    @Column(name = "featureName", tag = true)
     private String featureName;
 
     @Column(name = "testType", tag = true)
@@ -58,6 +58,7 @@ public class TestRunResult {
         this.releaseVersion = UNKNOWN;
         this.result = UNKNOWN;
         this.run = UNKNOWN;
+        this.featureName = UNKNOWN;
         this.testCasesFailed = 0;
         this.testCasesSkipped = 0;
         this.testCasesTotal = 0;

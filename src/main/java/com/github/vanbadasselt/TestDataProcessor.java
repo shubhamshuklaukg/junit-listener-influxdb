@@ -33,7 +33,7 @@ public class TestDataProcessor {
     private Instant startTimeTest;
     private Instant startTimeTestRun;
 
-    private String application = UNKNOWN;
+    private String application = "ds-tests";
     private String feature = UNKNOWN;
     private String featureName = UNKNOWN;
     private String releaseVersion = UNKNOWN;
@@ -79,7 +79,7 @@ public class TestDataProcessor {
             if (sourceParts[0].equalsIgnoreCase("com") && sourceParts[1].equalsIgnoreCase("github")) {
                 this.application = (sourceParts[2] + "_" + sourceParts[3]).toUpperCase(Locale.ROOT);
             } else {
-                this.application = "NO_GITHUB_APPLICATION";
+                this.application = "ds-tests";
             }
         } else {
             this.application = "UNKNOWN_APPLICATION";
@@ -107,6 +107,7 @@ public class TestDataProcessor {
     public void setFeatureName(final String featureName) {
         this.featureName = featureName;
         this.testResult.setFeatureName(featureName);
+        this.testRunResult.setFeatureName(featureName);
     }
 
     public void setResultAndErrorMessage(final TestExecutionResult testExecutionResult) {

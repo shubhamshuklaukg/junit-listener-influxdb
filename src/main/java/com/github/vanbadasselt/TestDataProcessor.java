@@ -24,6 +24,9 @@ public class TestDataProcessor {
     private static final String TYPE_UNIT = "UT";
     private static final String TYPE_COMPONENT = "CT";
     private static final String TYPE_INTEGRATION = "IT";
+    private static final String TYPE_SYSTEM = "SYSTEM";
+    private static final String DS_ENV = "DS_ENV";
+    private static final String REGION = "REGION";
 
     private static final String UNKNOWN = "UNK";
 
@@ -40,6 +43,9 @@ public class TestDataProcessor {
     private String risk = UNKNOWN;
     private String run = UNKNOWN;
     private String testType = UNKNOWN;
+    private String dsEnv = DS_ENV;
+    private String region = REGION;
+
 
     private TestRunResult testRunResult;
     private TestResult testResult;
@@ -102,6 +108,8 @@ public class TestDataProcessor {
         this.testResult.setRisk(this.risk);
         this.testResult.setRun(this.run);
         this.testResult.setTestType(this.testType);
+        this.testResult.setDSEnv(this.dsEnv);
+        this.testResult.setRegion(this.region);
     }
 
     public void setFeatureName(final String featureName) {
@@ -166,6 +174,17 @@ public class TestDataProcessor {
         this.testResult.setTestName(splitCamelCase(name));
     }
 
+    public void setDSEnv(final String dsEnv) {
+        this.dsEnv = System.getenv(dsEnv);
+        this.testResult.setDSEnv(this.dsEnv);
+        this.testRunResult.setDSEnv(this.dsEnv);
+    }
+    public void setRegion(final String region) {
+        this.region = System.getenv(region);
+        this.testResult.setRegion(this.region);
+        this.testRunResult.setRegion(this.region);
+    }
+
     /**
      * Determine the test type based on the path directory of your tests
      * This example requires your tests to be situated in directory 'component' or 'integration'
@@ -176,6 +195,8 @@ public class TestDataProcessor {
     public void setTestType(final String testSource) {
         if (testSource.endsWith("Test")) {
             this.testType = TYPE_UNIT;
+        } else if (testSource.endsWith("Tests")) {
+            this.testType = TYPE_SYSTEM;
         } else if (testSource.endsWith(TYPE_COMPONENT)) {
             this.testType = TYPE_COMPONENT;
         } else if (testSource.endsWith(TYPE_INTEGRATION)) {

@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 public class JUnitListenerInfluxDb implements TestExecutionListener {
 
     private static final String ENV_ENABLE_TEST_LISTENER = "TEST_RESULTS_ENABLED";
+    private static final String ENV_DS_ENV = "DS_ENV";
+    private static final String ENV_REGION = "REGION";
     private static final String UNKNOWN = "UNK";
     private final boolean isListenerEnabled;
     private final Logger log = Logger.getLogger(JUnitListenerInfluxDb.class.getName());
@@ -60,6 +62,8 @@ public class JUnitListenerInfluxDb implements TestExecutionListener {
                 final String className = testIdentifier.getDisplayName();
                 testDataProcessor.setFeatureName(className);
                 testDataProcessor.setTestType(className);
+                testDataProcessor.setDSEnv(ENV_DS_ENV);
+                testDataProcessor.setRegion(ENV_REGION);
 
                 if (testDataProcessor.getApplication().equals(UNKNOWN)) {
                     testDataProcessor.setApplication(testIdentifier.getLegacyReportingName());

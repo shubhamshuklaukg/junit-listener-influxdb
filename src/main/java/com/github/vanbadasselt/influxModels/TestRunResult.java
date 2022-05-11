@@ -8,7 +8,7 @@ import java.time.Instant;
 
 @SuppressFBWarnings("URF_UNREAD_FIELD")
 @SuppressWarnings("PMD.UnusedPrivateField")
-@Measurement(name = "testRunResults")
+@Measurement(name = "test_Suite_Results")
 public class TestRunResult {
 
     @TimeColumn
@@ -27,10 +27,10 @@ public class TestRunResult {
     @Column(name = "releaseVersion")
     private String releaseVersion;
 
-    @Column(name = "result", tag = true)
+    @Column(name = "result")
     private String result;
 
-    @Column(name = "run", tag = true)
+    @Column(name = "run")
     private String run;
 
     @Column(name = "testCasesFailed")
@@ -42,18 +42,24 @@ public class TestRunResult {
     @Column(name = "testCasesTotal")
     private long testCasesTotal;
 
-    @Column(name = "featureName", tag = true)
+    @Column(name = "featureName")
     private String featureName;
 
-    @Column(name = "testType", tag = true)
+    @Column(name = "testType")
     private String testType;
+
+    @Column(name = "dsEnv")
+    private String dsEnv;
+
+    @Column(name = "region")
+    private String region;
 
     private static final String UNKNOWN = "UNK";
     private static final String APPLICATION_TYPE_BACKEND = "BE";
 
     public TestRunResult(){
         this.application = "ds-tests";
-        this.applicationType = APPLICATION_TYPE_BACKEND;
+        this.applicationType = "Datascience Tests";
         this.durationMs = 0;
         this.releaseVersion = UNKNOWN;
         this.result = UNKNOWN;
@@ -62,6 +68,8 @@ public class TestRunResult {
         this.testCasesFailed = 0;
         this.testCasesSkipped = 0;
         this.testCasesTotal = 0;
+        this.dsEnv = UNKNOWN;
+        this.region = UNKNOWN;
     }
 
     public void setApplication(String application) {
@@ -102,5 +110,12 @@ public class TestRunResult {
 
     public void setTestType(String testType) {
         this.testType = testType;
+    }
+    public void setDSEnv(String dsEnv) {
+        this.dsEnv = dsEnv;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 }

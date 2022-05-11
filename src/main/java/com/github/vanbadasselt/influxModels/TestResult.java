@@ -9,7 +9,7 @@ import java.time.Instant;
 @SuppressFBWarnings("URF_UNREAD_FIELD")
 @SuppressWarnings("PMD.UnusedPrivateField")
 
-@Measurement(name = "testResults")
+@Measurement(name = "test_Case_Results")
 public class TestResult {
 
     @TimeColumn
@@ -31,39 +31,45 @@ public class TestResult {
     @Column(name = "feature", tag = true)
     private String feature;
 
-    @Column(name = "featureName", tag = true)
+    @Column(name = "featureName")
     private String featureName;
 
     @Column(name = "releaseVersion")
     private String releaseVersion;
 
-    @Column(name = "result", tag = true)
+    @Column(name = "result")
     private String result;
 
     @Column(name = "risk", tag = true)
     private String risk;
 
-    @Column(name = "run", tag = true)
+    @Column(name = "run")
     private String run;
 
     @Column(name = "skippedMessage")
     private String skippedMessage;
 
-    @Column(name = "testName", tag = true)
+    @Column(name = "testName")
     private String testName;
 
-    @Column(name = "testType", tag = true)
+    @Column(name = "testType")
     private String testType;
 
     @Column(name = "warningMessage")
     private String warningMessage;
+
+    @Column(name = "dsEnv")
+    private String dsEnv;
+
+    @Column(name = "region")
+    private String region;
 
     private static final String UNKNOWN = "UNK";
     private static final String APPLICATION_TYPE_BACKEND = "BE";
 
     public TestResult() {
         this.application = "ds-tests";
-        this.applicationType = APPLICATION_TYPE_BACKEND;
+        this.applicationType = "Datascience Tests";
         this.durationMs = 0;
         this.errorMessage = UNKNOWN;
         this.feature = UNKNOWN;
@@ -76,6 +82,8 @@ public class TestResult {
         this.testName = UNKNOWN;
         this.testType = "system";
         this.warningMessage = UNKNOWN;
+        this.dsEnv = UNKNOWN;
+        this.region = UNKNOWN;
     }
 
     public void setApplication(String application) {
@@ -128,5 +136,13 @@ public class TestResult {
 
     public void setTime(Instant time) {
         this.time = time;
+    }
+
+    public void setDSEnv(String dsEnv) {
+        this.dsEnv = dsEnv;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 }
